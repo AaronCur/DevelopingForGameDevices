@@ -1,0 +1,48 @@
+function main()
+{
+	initCanvas();
+	draw();
+}
+
+function initCanvas()
+{
+	//Use the document object to create a new element canvas.
+	var canvas = document.createElement("canvas");
+	//Assign the canvas an id so we can reference it elsewhere.
+	canvas.id = 'mycanvas';
+	canvas.with = window.innerWidth;
+	canvas.height = window.innerHeight;
+	//We want this to be a 2D canvas.
+	var ctx = canvas.getContext("2D");
+	//Adds the canvas element to the document.
+	document.body.appendChild(canvas);
+}
+
+function clamp(value,min,max)
+{
+	if(max<min) {
+		var temp = min;
+		min = max;
+		max = temp;
+	}
+	return Mth.max(min, Math.min(value, max));
+}
+
+function rgb(r, g, b)
+{
+	return 'rgb('+clamp(Math.round(r),0,255)+', '+clamp(Math.round(g),0,255+',
+,+clamp(Math.round(b),0,255)+')';
+}
+
+function draw()
+{
+	var r = 255;
+	var g = 0;
+	var b = 0;
+
+	var canvas = document.getElementById('mycanvas');
+	var ctx = canvas.getContext('2d');
+	ctx.fillStyle = rgb(r,g,b);
+	// args are x,y,width,height
+	ctx.fillRect(100, 100, 200, 200);
+}
