@@ -11,12 +11,12 @@ function averageMarks(gradesArray)
     }
 
     mean = total / count;
-    console.log(mean);
+    console.log(Math.floor(mean));
 }
 function main()
 {
 
-var gradesArray = [2,1,2,3,2];
+var gradesArray = [1,2,3,4,5,6];
 
 averageMarks(gradesArray);
 
