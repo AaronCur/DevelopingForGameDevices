@@ -9,18 +9,18 @@ function howManyLightsabersDoYouOwn(name)
     if(lightsabers.hasOwnProperty(name))
     {
       var quantity = lightsabers[name];
-      console.log(quantity);
     }
     else {
-      console.log("0");
+      quantity = 0;
     }
 
+    return quantity;
 }
 function main()
 {
 
 var name = prompt("Enter a name ");
 
-howManyLightsabersDoYouOwn(name);
+console.log(howManyLightsabersDoYouOwn(name));
 
 }

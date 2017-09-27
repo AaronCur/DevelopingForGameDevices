@@ -5,6 +5,7 @@ var b = {'Mike' : 'aye', 'Joe' : 'aye' , 'Peter' : 'nay', 'Johnson' : 'aye'}
 function checkReady(array)
 {
   var fire = '';
+  var string = '';
   var ready = true;
 
     for(var name in array)
@@ -17,7 +18,8 @@ function checkReady(array)
       if(fire ==='nay')
       {
 
-        console.log('Shiver me timbers!');
+        //console.log('Shiver me timbers!');
+        string = 'Shiver me timbers'
         ready = false;
         break;
 
@@ -30,14 +32,15 @@ function checkReady(array)
 
     if(ready === true)
     {
-      console.log('Fire!');
+      string = 'Fire!';
     }
 
+    return string
 
 }
 function main()
 {
 
-checkReady(b);
+console.log(checkReady(a));
 
 }
