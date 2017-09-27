@@ -6,7 +6,7 @@ function Ship(draft,crew) {
 
 Ship.prototype.isWorthIt = function()
 {
-  var totalWeight = (this.crew * 1.5) + this.draft;
+  var totalWeight = this.draft - (this.crew * 1.5);
 
   if(totalWeight > 20)
   {
