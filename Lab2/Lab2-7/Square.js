@@ -22,6 +22,9 @@ Square.prototype.draw = function()
 	width = 200;
 	height = 200;
 
+
+
+
 	ctx.fillStyle = rgb(r,g,b);
 	// args are x,y,width,height
 	ctx.fillRect(x, y, width, height);
