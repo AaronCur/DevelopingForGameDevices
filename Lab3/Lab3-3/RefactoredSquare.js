@@ -1,9 +1,18 @@
+
+
+//this listens for keydown events
+//document.addEventListener("keydown", keyDownHandler);
+
 function main()
 {
-	var square = new Square(0, 0, 0, 0, 0);
+	var square = new Square(0,0,0,0,0);
 	initCanvas();
 	console.log("Hello world");
-	square.draw();
+
+	for (var i = 0; i < 2; i++) {
+		square.draw();
+	}
+
 }
 
 function initCanvas()
@@ -19,7 +28,6 @@ function initCanvas()
 	//Adds the canvas element to the document.
 	document.body.appendChild(canvas);
 }
-//To prevent arrow keys from causing the page to scroll when trying to move square
 window.addEventListener("keydown", function(e) {
     // Space and arrow keys
     if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
@@ -27,6 +35,16 @@ window.addEventListener("keydown", function(e) {
     }
 }, false);
 
+
+//function keyDownHandler (e)
+//{
+//code triggered when UP arrow is pressed
+	//if(e.keyCode === 38)
+	//{
+		//square[0].x +=5;
+		//console.log("Pressed")
+	//}
+//
 function clamp(value,min,max)
 {
 	if(max<min) {
