@@ -2,19 +2,70 @@
 
 //this listens for keydown events
 //document.addEventListener("keydown", keyDownHandler);
-
+	var square = new Square(0,0,0,0,0);
 function main()
 {
-	var square = new Square(0,0,0,0,0);
+	//document.addEventListener("keydown", keyDownHandler, true);
+	//var square = new Square(0,0,0,0,0);
 	initCanvas();
 	console.log("Hello world");
 
 	for (var i = 0; i < 2; i++) {
 		square.draw();
 	}
-
+	var canvas = document.getElementById('mycanvas');
+	var ctx = canvas.getContext('2d')
+	document.addEventListener("keydown", keyDownHandler, true);
 }
 
+function keyDownHandler(e)
+{
+	//code triggered when left arrow is pressed
+	if(e.keyCode === 37)
+	{
+
+	//	x = x-10;
+		square.x = square.x - 10;
+
+		console.log("Key pressed");
+	}
+//code triggered when UP arrow is pressed
+
+	if(e.keyCode === 38)
+	{
+
+	//	y = y-10;
+		square.y = square.y - 10;
+
+		console.log("Key pressed");
+	}
+	//Code is triggered when right arrow is pressed
+	if(e.keyCode === 39)
+	{
+
+		//x = x+10;
+		square.x = square.x + 10;
+
+		console.log("Key pressed");
+	}
+	if(e.keyCode === 40)
+	{
+
+		//y = y+10;
+		square.y = square.y + 10;
+
+		console.log("Key pressed");
+
+	}
+	square.draw();
+}
+/**
+ * Initialises the canvas - the drawing surface. The canvas
+ * is added to the document. When a HTML document is loaded into a
+ * browser, it becomes a document object. This document object is
+ * the root node of the HTML document and is considered the 'owner' of all other
+ * nodes such as forms, buttons, the canvas etc.
+ */
 function initCanvas()
 {
 	//Use the document object to create a new element canvas.
@@ -35,16 +86,14 @@ window.addEventListener("keydown", function(e) {
     }
 }, false);
 
-
-//function keyDownHandler (e)
-//{
-//code triggered when UP arrow is pressed
-	//if(e.keyCode === 38)
-	//{
-		//square[0].x +=5;
-		//console.log("Pressed")
-	//}
-//
+/**
+ * Helper function that clamps value between min and max and returns value.
+ * Example: clamp(10, 1, 3) will return 3
+ * @param {Integer} value integer value to be clamped.
+ * @param {Integer} min lower range value.
+ * @param {Integer} max upper range value.
+* @return {Integer} min if value is less than min, max if max is less than value, otherwise value.
+ */
 function clamp(value,min,max)
 {
 	if(max<min) {
@@ -54,6 +103,14 @@ function clamp(value,min,max)
 	}
 	return Math.max(min, Math.min(value, max));
 }
+/**
+ * Helper function that returns a string of the form 'rgb(r,g,b)' where
+ * r,g and b are numeric values.
+ * @param {Number} r assumed numeric value for red.
+ * @param {Number} g assumed numeric value for green.
+ * @param {Number} b assumed numeric value for blue.
+* @return {String} a string of the form 'rgb(r,g,b)' where r,g and b are integers clamped between 0 and 255.
+ */
 
 function rgb(r, g, b)
 {
