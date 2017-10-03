@@ -1,62 +1,57 @@
-
-
-//this listens for keydown events
-//document.addEventListener("keydown", keyDownHandler);
-	var square = new Square(0,0,0,0,0);
+/**
+ * @fileoverview Simple programme to draw and move a suare with key press
+ * @author Aaron Curry
+ */
+//
+var square = new Square(100,100,200,200);
+/**
+*Initiialises the canvas
+*Initialises the square and draws in its initial position
+*/
 function main()
 {
-	//document.addEventListener("keydown", keyDownHandler, true);
-	//var square = new Square(0,0,0,0,0);
 	initCanvas();
 	console.log("Hello world");
-
-	for (var i = 0; i < 2; i++) {
-		square.draw();
+	square.draw();
 	}
 	var canvas = document.getElementById('mycanvas');
 	var ctx = canvas.getContext('2d')
 	document.addEventListener("keydown", keyDownHandler, true);
 }
 
+/**
+ * function that listens for keyboard input and executes related code
+ * Example: if the left arrow is pressed (keycode == 37), the square will move left
+ * @param {events} event listener
+* After a keypress has been detected the fuction calls the square.draw function updating
+*the square position on screen
+ */
 function keyDownHandler(e)
 {
 	//code triggered when left arrow is pressed
 	if(e.keyCode === 37)
 	{
-
-	//	x = x-10;
 		square.x = square.x - 10;
-
-		console.log("Key pressed");
 	}
-//code triggered when UP arrow is pressed
 
+//code triggered when UP arrow is pressed
 	if(e.keyCode === 38)
 	{
-
-	//	y = y-10;
 		square.y = square.y - 10;
-
-		console.log("Key pressed");
 	}
 	//Code is triggered when right arrow is pressed
 	if(e.keyCode === 39)
 	{
-
-		//x = x+10;
 		square.x = square.x + 10;
-
-		console.log("Key pressed");
 	}
+	//Code is triggered when down arrow is pressed
 	if(e.keyCode === 40)
 	{
-
-		//y = y+10;
 		square.y = square.y + 10;
 
-		console.log("Key pressed");
-
 	}
+	//Call draw after adjusting x and y position to draw the square in its updated
+	//Postion
 	square.draw();
 }
 /**
