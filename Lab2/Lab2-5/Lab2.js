@@ -5,6 +5,11 @@ function checkAlias(first, sur)
 {
 
   var alias = '';
+  /*var result = firstName[first.charAt(0).toUpperCase()];
+  if (result !== undefined)
+  {
+
+  }*/
 
   if (/^[A-Za-z]+$/.test(first) && /^[A-Za-z]+$/.test(sur))
   {
@@ -17,7 +22,7 @@ function checkAlias(first, sur)
   }
 
   return alias
-  
+
 }
 function main()
 {
