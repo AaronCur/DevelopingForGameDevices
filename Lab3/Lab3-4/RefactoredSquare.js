@@ -18,7 +18,6 @@ function main()
 	var ctx = canvas.getContext('2d')
 	document.addEventListener("keydown", keyDownHandler, true);
 }
-
 /**
  * function that listens for keyboard input and executes related code
  * Example: if the left arrow is pressed (keycode == 37), the square will move left
