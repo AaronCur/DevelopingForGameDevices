@@ -1,8 +1,10 @@
 function main()
 {
 	var game = new Game();
+	var scene = new Scene();
 	initCanvas();
 	game.init();
+	scene.render();
 
 }
 /**

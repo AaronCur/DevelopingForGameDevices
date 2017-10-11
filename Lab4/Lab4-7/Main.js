@@ -3,10 +3,11 @@
  * This is an application which uses a scene manager to switch between
  * scenes on mouse click (title screen inherits from scene)
  */
- 
  /**
  *Initiialises the canvas
- *Initialises the square and draws in its initial position
+ *Initialises all the scenes along with the scene manager
+ *Adds scenes to the scene manager.
+ *Event Handler to detect mousclick is defined
  */
 function main()
 {
@@ -52,7 +53,7 @@ function initCanvas()
  * function that calls the draw method in the scene manager
  * Example: if the current scene is 'MenuScene' the draw method is called and the text 'Menu'
  * is displayed on the screen
- * @param {object} sceneManager - passes in the scene manager to access draw() function
+ * @param {object} sceneManager - passes in the scene manager to access render() function
  */
 function draw(sceneManager)
 {

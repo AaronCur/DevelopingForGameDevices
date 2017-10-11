@@ -6,7 +6,7 @@ class GameOverScene extends Scene
 {
   /**
    * Constructor function , creates a scene with parameters which are passed in on construction
-   * @param {String} title - passes in a string whihc is set in the main
+   * @param {String} title - passes in a string which is set in the main
    */
   constructor(title)
   {
