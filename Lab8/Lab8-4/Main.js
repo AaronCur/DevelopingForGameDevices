@@ -42,9 +42,6 @@ function main()
  * browser, it becomes a document object. This document object is
  * the root node of the HTML document and is considered the 'owner' of all other
  * nodes such as forms, buttons, the canvas etc.
- *
- * defines the handlers for touchmove(passive:false to stop scrolling),touchend
-  * and touchstart(binded canvas so it doesnt haveto be declared again)
  */
 function initCanvas()
 {
@@ -93,7 +90,7 @@ function createDiv(divId)
   {
     div.innerHTML = "<img src=\'Images/NotHot.jpg\'>";
   }
-  div.addEventListener("touchstart", onTouchStart);
+  div.addEventListener("touchstart", onTouchStart,{passive:false});
   document.body.appendChild(div);
 
 }
@@ -107,7 +104,7 @@ function createDiv(divId)
  */
 function onTouchStart(e)
 {
-
+  e.preventDefault();
   var currentElement = e.target;
 	var parentDiv = currentElement.parentNode;
   console.log("Div id = " + parentDiv.id);
