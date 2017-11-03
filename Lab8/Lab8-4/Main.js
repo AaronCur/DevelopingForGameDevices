@@ -1,12 +1,17 @@
 /**
  * @fileoverview
  * @author Aaron Curry
+ *Start Date:31/10/2017
+ *End Date: 03/11/2017
  */
 //
 var gameNs = {};
 /**
 *Initiialises the canvas
 *Creates a touchTest object
+*Creates a soundmanager object
+*Loads all the soundfiles
+*Creates each of the divs
 */
 function main()
 {
@@ -32,7 +37,32 @@ function main()
 
 }
 /**
-*helper function that creates div
+ * Initialises the canvas - the drawing surface. The canvas
+ * is added to the document. When a HTML document is loaded into a
+ * browser, it becomes a document object. This document object is
+ * the root node of the HTML document and is considered the 'owner' of all other
+ * nodes such as forms, buttons, the canvas etc.
+ *
+ * defines the handlers for touchmove(passive:false to stop scrolling),touchend
+  * and touchstart(binded canvas so it doesnt haveto be declared again)
+ */
+function initCanvas()
+{
+//Use the document object to create a new element canvas.
+ var canvas = document.createElement("canvas");
+ //Assign the canvas an id so we can reference it elsewhere.
+ canvas.id = 'mycanvas';
+ canvas.width = window.innerWidth;
+ canvas.height = window.innerHeight;
+ //We want this to be a 2D canvas.
+ var ctx = canvas.getContext("2d");
+ //Adds the canvas element to the document.
+ document.body.appendChild(canvas);
+
+}
+/**
+*helper function that creates each div for the soundboard and its associatrd image
+*depending on its divId
 * @param {string} divId takes the div Id
 */
 function createDiv(divId)
@@ -69,47 +99,15 @@ function createDiv(divId)
 }
 
 /**
- * Initialises the canvas - the drawing surface. The canvas
- * is added to the document. When a HTML document is loaded into a
- * browser, it becomes a document object. This document object is
- * the root node of the HTML document and is considered the 'owner' of all other
- * nodes such as forms, buttons, the canvas etc.
- *
- * defines the handlers for touchmove(passive:false to stop scrolling),touchend
-  * and touchstart(binded canvas so it doesnt haveto be declared again)
- */
- /**
- *helper function that creates div
- * @param {string} divId takes the div Id
- */
-
-
-function initCanvas()
-{
-//Use the document object to create a new element canvas.
- var canvas = document.createElement("canvas");
- //Assign the canvas an id so we can reference it elsewhere.
- canvas.id = 'mycanvas';
- canvas.width = window.innerWidth;
- canvas.height = window.innerHeight;
- //We want this to be a 2D canvas.
- var ctx = canvas.getContext("2d");
- //Adds the canvas element to the document.
- document.body.appendChild(canvas);
-
-}
-/**
  * function that handles all information when the first touch is detected
- * sets the first touch position and assigns this to a variable so it can be
- * accessed for finding the length of a line
- * the two as the touch position moves
- * @param {Param} canvas - passes in the canvas so it doesnt have to be declared again
+ * sets the first touch position and assigns this to a variable so it can be accessed
+ * it then checks what div was pressed by getting the filename from the url
+ * triggering the sound related to each div
  * @param {Param} e - passes in touch start handler
  */
 function onTouchStart(e)
 {
 
-  var count = count + 1;
   var currentElement = e.target;
 	var parentDiv = currentElement.parentNode;
   console.log("Div id = " + parentDiv.id);
