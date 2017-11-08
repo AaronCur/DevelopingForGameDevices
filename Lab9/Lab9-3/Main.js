@@ -13,7 +13,7 @@ function main()
   gameNs.game = game;
   game.initWorld();
   game.update();
-  game.draw();
+  //game.draw();
 
 
 

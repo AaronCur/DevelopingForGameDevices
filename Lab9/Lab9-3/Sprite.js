@@ -1,20 +1,20 @@
 class Sprite
 {
 
-  constructor(x,y)
+  constructor(context, imageOptions, x,y)
   {
-   this.img=new Image();
-   this.img.src = "Images/PlayerSS2.png";
+   this.img= imageOptions.image;
    this.x = x;
    this.y = y;
-   this.width = 86;
-   this.height = 85;
-   this.frameIndex = 0;
-   this.tickCount = 0;
-   this.tickCount1 = 0;
-   this.ticksPerFrame = 100;
-   this.numberOfFrames = 5;
-   this.loop = true;
+   this.index = 0;
+   this.width = 100;
+   this.height = 222;
+  // this.frameIndex = 0;
+//   this.tickCount = 0;
+//   this.tickCount1 = 0;
+//   this.ticksPerFrame = 100;
+//   this.numberOfFrames = 5;
+//   this.loop = true;
 
   }
 
@@ -28,50 +28,36 @@ class Sprite
    */
    update()
    {
-     this.tickCount +=1;
+     var canvas = document.getElementById('mycanvas');
+     var ctx = canvas.getContext('2d');
 
-     if (this.tickCount > this.ticksPerFrame)
-      {
+     var image = this.img;
+     ctx.drawImage(image, this.index* 35 , 14,97, 122 ,0,0, this.width,this.height);
+     this.index = this.index +1;
+     if(this.index > 4)
+     {
+       this.index = 0;
+     }
 
-        	this.tickCount = 0;
+
+  //   if (this.tickCount > this.ticksPerFrame)
+    //  {
+
+        //this.tickCount = 0;
 
             // If the current frame index is in range
-            if (this.frameIndex < this.numberOfFrames - 1) {
+          //  if (this.frameIndex < this.numberOfFrames - 1) {
                 // Go to the next frame
-                this.frameIndex += 1;
-            }
+            //    this.frameIndex += 1;
+          //  }
           //  else if (this.loop == true)
           //  {
             //  frameIndex = 0;
           //}
-        }
+      //  }
 
 
-   }
-   draw()
-  {
+  // }
 
-    this.tickCount +=1;
-    if(this.tickCount >= 60)
-    {
-      this.tickCount1 +=1;
-      console.log(this.tickCount1);
-
-    }
-
-    var canvas = document.getElementById('mycanvas');
-    var ctx = canvas.getContext('2d');
-    //ctx.clearRect(0,0,canvas.width, canvas.height);
-    this.img.onload = function() {
-     //for (var i = 0; i < 8; i++)
-  //   {
-
-       ctx.drawImage(this, this.tickCount1* this.width , 0, (this.tickCount1+1) * this.width, this.height ,0,0, 100,100);
-
-//  }
-        // ctx.clearRect(0,0,canvas.width, canvas.height);
-   };
-     console.log("Image 1 ready to append");
-  }
-
+}
 }
