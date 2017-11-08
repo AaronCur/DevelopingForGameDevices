@@ -1,9 +1,10 @@
-/**
-*helper funtion that constructs game
-*/
 var gameNs = {};
 class Game
 {
+  /**
+  *helper funtion that constructs game setting up each of the animated sprites
+  *can also set ptoperties of the sprite objects, width, height, image, its y position and fps
+  */
   constructor()
   {
     this.img=new Image();
@@ -15,26 +16,28 @@ class Game
     width: 100,
     height: 222,
     image: this.img
-}, 100, 100);
+    }, 100, 100);
 
   gameNs.mySpriteObject1 = new Sprite(ctx, {
     width: 100,
     height: 222,
     image: this.img
-  }, 25, 300);
-
-    console.log("game constructed");
-    this.sprite = new Sprite(100,100);
+    }, 25, 300);
 
   }
-
+  /**
+  *helper funtion that records the time when the application is loaded
+  */
   initWorld() //prints out “Initialising game world”
   {
     console.log("Initialising game world");
       gameNs.previousTime = Date.now();	// previousTime is initially 0
 
   }
-
+  /**
+  *Update function called every frame. sets the current time when the function is called
+  * calls updates for each sprite object and clears the screen
+  */
   update()
   {
     var now = Date.now();

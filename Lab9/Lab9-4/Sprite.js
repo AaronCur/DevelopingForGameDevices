@@ -1,5 +1,15 @@
 class Sprite
 {
+  /**
+  *helper funtion that constructs the sprite object assigning the passed in values
+  *can access cvalues by using imageOptions. also sets up a ticksPerFrame and this.time
+  *variables to be used in the update function for controlling animation settings
+  *can also set ptoperties of the sprite objects, width, height, image, its y position and fps
+  *@param {Canvas} context - passes in the deltaTime value from the game class
+  *@param {Image} imageOptions - passes in the deltaTime value from the game class
+  *@param {Integer} fps - passes in the fps value from 
+  *@param {Integer} y - passes in the y value from the game constructor
+  */
   constructor(context, imageOptions, fps,y)
   {
    this.img= imageOptions.image;
@@ -13,13 +23,10 @@ class Sprite
   }
 
   /**
-   * function of Square which gives the r g b varialbles an
-   * initial value and thrn fills the sqare  colour initially
-   * @type {Integer} r -given value of 10
-   * @type {Integer} b -given value of 255
-   * @type {Integer} g -given value of 10
-  *fills the rectanglewith this rgb value at the positon this.x, this.y
-   */
+  *update function which is called every frame by the game class.
+  *this function draws the image
+  *@param {Time} deltaTime - passes in the deltaTime value from the game class
+  */
    update(deltaTime)
    {
      if(deltaTime != null)
