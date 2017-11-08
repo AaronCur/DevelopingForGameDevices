@@ -7,7 +7,7 @@ class Sprite
   *can also set ptoperties of the sprite objects, width, height, image, its y position and fps
   *@param {Canvas} context - passes in the deltaTime value from the game class
   *@param {Image} imageOptions - passes in the deltaTime value from the game class
-  *@param {Integer} fps - passes in the fps value from 
+  *@param {Integer} fps - passes in the fps value from
   *@param {Integer} y - passes in the y value from the game constructor
   */
   constructor(context, imageOptions, fps,y)
@@ -21,7 +21,6 @@ class Sprite
    this.time = 0;
    this.ticksPerFrame = 1000/this.fps;
   }
-
   /**
   *update function which is called every frame by the game class.
   *this function draws the image
