@@ -9,7 +9,6 @@ class WSHandler(tornado.websocket.WebSocketHandler):
         return True
 
     def open(self):
-        pass
         print("Connection opened")
 
     def on_message(self, message):
@@ -22,11 +21,16 @@ class WSHandler(tornado.websocket.WebSocketHandler):
         print(session)
         self.send_to_other_player(message, player_address);
 
+    def get_player_address(self, player_address):
+        pass
+        print(player_address)
+        return player_address
+
     def send_to_other_player(self,message, player_address):
         pass
         #iterate through the connections
         for key, value in session.items():
-            if(key != player_address):
+            if(key != self.get_player_address(player_address)):
                 self.write_message("You said: " + message)
                 pass
 
