@@ -16,6 +16,7 @@ function main()
   //called when the client receives a message
   ws.onmessage = function (evt) {
     var msg = JSON.parse(evt.data);
+    alert(evt.data)
     if(msg.type === 'updateState')
     {
       updateLocalState(msg)
@@ -25,9 +26,9 @@ function main()
     document.addEventListener("click", updateState.bind(null,ws));
 
 }
-  function updateLocalState(updateStateMessage)
+  function updateLocalState(msg)
   {
-    console.log(msg);
+    console.log(msg.data);
   }
 
   function updateState(ws, e)
@@ -37,7 +38,7 @@ function main()
     var ctx = canvas.getContext("2D");
     var mouseX = e.clientX - canvas.offsetLeft;
     var mouseY = e.clientY - canvas.offsetTop;
-
+    console.log("MouseX: "+mouseX+ " MouseY: "+mouseY)
     updateStateMessage.type = "updateState"
     updateStateMessage.data = {x:mouseX,y:mouseY};
 

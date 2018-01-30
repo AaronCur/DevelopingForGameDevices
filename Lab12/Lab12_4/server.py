@@ -14,25 +14,26 @@ class WSHandler(tornado.websocket.WebSocketHandler):
         print("Connection opened")
 
     def on_message(self, message):
-        pass
-        #self.write_message("You said: " + message)
+        print(message)
         print(self.request.remote_ip)
         print(self.stream.socket.getpeername()[1])
         player_address =str(self.request.remote_ip) + ":" + str(self.stream.socket.getpeername()[1])
         session[player_address] = self
         print(session)
-        ##self.send_to_other_player(message, player_address);
+        self.send_to_other_player(message,player_address);
         msg = json.loads(message)
         if(msg["type"]=="updateState"):
-            print(msg);
+            self.send_to_other_player(message, player_address);
+    def get_player_address(self,player_address):
+        pass
+        return player_address
 
     def send_to_other_player(self,message, player_address):
         pass
         #iterate through the connections
         for key, value in session.items():
-            if(key != player_address):
+            if(key != self.get_player_address(player_address)):
                 value.write_message(message)
-                pass
 
 
     def on_close(self):
