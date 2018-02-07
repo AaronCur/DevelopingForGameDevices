@@ -27,6 +27,8 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             print(msg);
         if(msg["type"]=="join"):
             self.join();
+        if(msg["type"]=="GameOver"):
+            self.GameOver();
 
     def join(self):
         message = {}
@@ -43,6 +45,18 @@ class WSHandler(tornado.websocket.WebSocketHandler):
             type = "error";
             data = "No available space: Two players already in the game!"
             self.format_message_to_self(type,data)
+
+    def GameOver(self):
+        message = {}
+        if(len(session) > 0):
+            session[self.get_player_address] = self
+            game_state=1
+            print(len(session))
+            data = game_state
+            type = "join"
+            self.format_message(type,data)
+            self.format_message_to_self(type,data)
+            session.clear()
 
     def format_message(self,type,data):
         msg = {}

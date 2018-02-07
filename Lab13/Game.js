@@ -35,6 +35,8 @@ class Game
     console.log("Initialising game world");
       var joinButton = document.getElementById("join");
       joinButton.addEventListener("click", this.join);
+      var gameOverButton = document.getElementById("GameOver");
+      gameOverButton.addEventListener("click", this.gameover);
       gameNs.ws.addEventListener('message', this.handleMessage);
 
   }
@@ -55,6 +57,17 @@ class Game
   {
     var message={}
     message.type = "join"
+    //if(gameNs.ws.readyState === gameNs.ws.OPEN)
+    //{
+      gameNs.ws.send(JSON.stringify(message));
+    //}
+    console.log(message);
+
+  }
+  gameover()
+  {
+    var message={}
+    message.type = "GameOver"
     //if(gameNs.ws.readyState === gameNs.ws.OPEN)
     //{
       gameNs.ws.send(JSON.stringify(message));

@@ -10,6 +10,7 @@ function main()
   //called when the client receives a message
 }
 
+
   function initCanvas()
   {
   	//Use the document object to create a new element canvas.
