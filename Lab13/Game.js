@@ -11,6 +11,10 @@ class Game
     this.ws = new WebSocket("ws://149.153.106.133:8080/wstest");
     gameNs.ws = this.ws
     //called when the websocket is opened
+    //this.player = new Player(100,100,200,200);
+    this.player = new Player(100,100,200,200);
+    this.otherPlayer = new Player(300,500,200,200);
+    this.ready = false;
        initCanvas();
 
        gameNs.ws.onopen = function() {
@@ -37,18 +41,31 @@ class Game
       joinButton.addEventListener("click", this.join);
       var gameOverButton = document.getElementById("GameOver");
       gameOverButton.addEventListener("click", this.gameover);
-      gameNs.ws.addEventListener('message', this.handleMessage);
+      gameNs.game.ws.addEventListener('message', this.handleMessage);
+
+
+
 
   }
   handleMessage(evt)
   {
     var msg = JSON.parse(evt.data);
-    console.log(msg)
     if(msg.type === 'updateState')
     {
-      this.updateLocalState(msg)
+      gameNs.game.otherPlayer.updateFromNet(msg.data.x,msg.data.y)
     }
     else if(msg.type === "error")
+    {
+      alert(msg.data)
+    }
+    else if(msg.type === "join")
+    {
+        gameNs.game.ready = true;
+        //gameNs.game.update();
+        gameNs.game.player = new Player(500,100,200,200)
+
+    }
+    else if(msg.type === "GameOver")
     {
       alert(msg.data)
     }
@@ -57,10 +74,11 @@ class Game
   {
     var message={}
     message.type = "join"
-    //if(gameNs.ws.readyState === gameNs.ws.OPEN)
-    //{
+    if(gameNs.ws.readyState === gameNs.ws.OPEN)
+    {
       gameNs.ws.send(JSON.stringify(message));
-    //}
+
+    }
     console.log(message);
 
   }
@@ -68,10 +86,10 @@ class Game
   {
     var message={}
     message.type = "GameOver"
-    //if(gameNs.ws.readyState === gameNs.ws.OPEN)
-    //{
+    if(gameNs.ws.readyState === gameNs.ws.OPEN)
+    {
       gameNs.ws.send(JSON.stringify(message));
-    //}
+    }
     console.log(message);
 
   }
@@ -83,14 +101,36 @@ class Game
   {
 
     window.requestAnimationFrame(gameNs.game.update);
+    if(gameNs.game.ready === true)
+    {
+      if(gameNs.game.player.checkCollision(gameNs.game.otherPlayer))
+      {
+         gameNs.game.gameover();
+      }
+    }
+
+
+  var message = {};
+  message.type = "updateState";
+  message.data = {x:gameNs.game.player.x, y:gameNs.game.player.y};
+
+  if(gameNs.game.ws.readyState === gameNs.game.ws.OPEN)
+  {
+    gameNs.ws.send(JSON.stringify(message));
+  }
+   gameNs.game.draw();
   }
 
   draw()
   {
-
     var canvas = document.getElementById('mycanvas');
     var ctx = canvas.getContext('2d');
     ctx.clearRect(0,0, canvas.width, canvas.height);
+    gameNs.game.player.draw();
+    gameNs.game.otherPlayer.draw();
+
+
+
 
   }
 
